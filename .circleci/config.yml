@@ -6,7 +6,7 @@ jobs:
   test-app:
     machine: true
     steps:
-      - run: Run test
+      - run: echo "Running test"
 
 workflows:
   build_and_push_image:
