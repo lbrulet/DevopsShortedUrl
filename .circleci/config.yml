@@ -11,6 +11,7 @@ workflows:
           context: myContext
           dockerfile: Dockerfile
           no-output-timeout: 20m
+          path: ./back/
           profile-name: default
           region: AWS_REGION_ENV_VAR_NAME
           repo: ecr-short-url
