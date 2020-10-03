@@ -1,11 +1,9 @@
+orbs:
+  aws-ecr: circleci/aws-ecr@6.12.2
 version: 2.1
-
-jobs:
-  deploy-docker:
-    orbs:
-      aws-ecr: circleci/aws-ecr@6.12.2
-    machine: true
-    steps:
+workflows:
+  build_and_push_image:
+    jobs:
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
           aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME
@@ -19,8 +17,3 @@ jobs:
           repo: ecr-short-url
           skip-when-tags-exist: false
           tag: ${CIRCLE_BRANCH}
-
-workflows:
-  build_and_push_image:
-    jobs:
-      - deploy-docker
