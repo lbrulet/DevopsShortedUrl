@@ -2,6 +2,15 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.12.2
 version: 2.1
 workflows:
+  test:
+    jobs:
+      build:
+        docker:
+          - image: circleci/node:lts
+        steps:
+          - checkout
+          - run: |
+              ls
   build_and_push_image:
     jobs:
       - aws-ecr/build-and-push-image:
