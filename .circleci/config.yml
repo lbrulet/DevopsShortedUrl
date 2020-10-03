@@ -12,7 +12,7 @@ workflows:
           create-repo: true
           dockerfile: Dockerfile
           no-output-timeout: 20m
-          path: back/Dockerfile
+          path: ./back/Dockerfile
           profile-name: default
           region: AWS_REGION_ENV_VAR_NAME
           repo: ecr-short-url
