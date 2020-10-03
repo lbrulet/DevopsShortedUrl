@@ -3,6 +3,10 @@ orbs:
 version: 2.1
 workflows:
   build_and_push_image:
+    branches:
+      only:
+        - production
+        - development
     jobs:
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
