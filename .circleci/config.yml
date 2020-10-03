@@ -1,9 +1,9 @@
-orbs:
-  aws-ecr: circleci/aws-ecr@6.12.2
 version: 2.1
 
 jobs:
   deploy-docker:
+    orbs:
+      aws-ecr: circleci/aws-ecr@6.12.2
     machine: true
     steps:
       - aws-ecr/build-and-push-image:
