@@ -8,7 +8,7 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 
 var corsOptions = {
-  origin: true,
+  origin: '*',
   optionsSuccessStatus: 200
 }
 
