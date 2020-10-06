@@ -1,14 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+var cors = require('cors')
 const ShortUrl = require('./db/models/shortUrl')
 const short = require('short-uuid');
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';
 
+var corsOptions = {
+  origin: true,
+  optionsSuccessStatus: 200
+}
+
 // App
 const app = express();
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/:alias', async (req, res) => {
     const shorted = await ShortUrl.findOne({

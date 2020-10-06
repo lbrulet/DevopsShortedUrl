@@ -8,3 +8,5 @@ services:
       - AURORA_USER=${AURORA_USER}
       - AURORA_PASSWORD=${AURORA_PASSWORD}
     image: '930597403264.dkr.ecr.eu-west-3.amazonaws.com/ecr-short-url:${NODE_ENV}'
+    ports:
+    - "8080:8080"
