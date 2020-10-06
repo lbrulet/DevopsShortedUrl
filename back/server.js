@@ -8,7 +8,7 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: '*',
   methods: 'GET,POST',
   allowedHeaders: 'Content-Type',
   optionsSuccessStatus: 200
@@ -17,7 +17,6 @@ var corsOptions = {
 // App
 const app = express();
 app.use(bodyParser.json())
-app.use(cors(corsOptions))
 
 app.get('/:alias', async (req, res) => {
     const shorted = await ShortUrl.findOne({
@@ -29,7 +28,7 @@ app.get('/:alias', async (req, res) => {
     res.redirect(shorted.url);
 });
 
-app.post('/short-me', async (req, res) => {
+app.post('/short-me', cors(corsOptions) ,async (req, res) => {
     const alias = short.generate();
     await ShortUrl.create({
         url: req.body.url,
