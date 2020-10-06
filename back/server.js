@@ -17,7 +17,7 @@ var corsOptions = {
 // App
 const app = express();
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.get('/:alias', async (req, res) => {
     const shorted = await ShortUrl.findOne({
