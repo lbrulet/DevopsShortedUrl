@@ -10,3 +10,11 @@ services:
     image: '930597403264.dkr.ecr.eu-west-3.amazonaws.com/ecr-short-url:${NODE_ENV}'
     ports:
     - "8080:8080"
+  front:
+    stdin_open: true
+    build: ./front
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/usr/src/www/node_modules"
+      - ".:/usr/src/www"
