@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import {shorterUrl} from "../api";
+import {URL_API, URL_WEB} from "../api/config";
 
 function Main() {
   const [url, setUrl] = useState("")
@@ -11,14 +12,20 @@ function Main() {
   useEffect(() => {
     setUrl(window.location.search.substring(1))
     if (url !== "") {
-      window.location.href = "http://127.0.0.1:8080/" + url;
+      window.location.href = URL_API + url;
     }
   }, [url]);
 
   function handleSubmit(event) {
-    shorterUrl(value)
+    let buff = value
+
+    if (!value.includes("://")) {
+      setValue("http://" + value)
+      buff = "http://" + value
+    }
+    shorterUrl(buff)
       .then((msg) => {
-        setShortened("http://127.0.0.1:8080/?" + msg.message)
+        setShortened(URL_WEB + "?" + msg.data.message)
       })
       .catch((err) => {
         console.log("Error")
